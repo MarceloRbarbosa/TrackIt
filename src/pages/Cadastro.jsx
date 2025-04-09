@@ -1,51 +1,57 @@
 import React, { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
-import Logo from '../image/Logo.png'
+import Logo from '../assets/image/Logo.png'
+import axios from "axios"
+
 
 function Cadastro(){
     const [email, setEmail] = useState ('')
     const [password, setPassword] = useState('')
     const [name , setName] = useState ('')
-    const [photo, setPhoto] = useState('')
+    const [image, setImage] = useState('')
+    const navigate = useNavigate()
 
-    function SignUp(){
-        console.log ({
-            email: email,
-            senha: password,
-            nome: name,
-            foto: photo,
-        })
+    function SignUp(e){
+        e.preventDefault()
+        const body = { email, name, image, password  }
+
+        axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up`, body)
+            .then(() => navigate("/"))
+            .catch(err => alert(err.response.data.message))
+
     }
 
     return (
         <Main>
             <Img src= {Logo} />
-            <InputGroup onChange={SignUp} >
-                <InputButton>
+            <InputGroup onSubmit={SignUp} >
+                <Input>
                     <Information
                     name="email" type="email" placeholder="email" onChange={e => setEmail(e.target.value)} value={email} required
                     />
-                </InputButton>
-                <InputButton>
+                </Input>
+                <Input>
                     <Information 
                     name="senha" type="password"  placeholder="senha" onChange={e => setPassword(e.target.value)} value={password} required
                     />
-                </InputButton>
-                <InputButton>
+                </Input>
+                <Input>
                     <Information 
                     name="name" placeholder="nome" onChange={e => setName(e.target.value)} value={name} required
                     />
-                </InputButton>
-                <InputButton>
+                </Input>
+                <Input>
                     <Information 
-                    name="photo"  placeholder="foto" onChange={e => setPhoto(e.target.value)} value={photo}  required
+                    name="image"  placeholder="foto" onChange={e => setImage(e.target.value)} value={image}  required
                     />
-                </InputButton>
-                <InputButton>
-                    <Enter>Cadastrar</Enter>
-                </InputButton>  
+                </Input>
+                <Input>
+                    <Enter type="submit">Cadastrar</Enter>
+                </Input>          
+            <TextLink to="/"
+             >Já tem uma conta ? faça login!</TextLink>
             </InputGroup>
-            <TextLink>Já tem uma conta ? faça login!</TextLink>
         </Main>
     )
 }
@@ -64,7 +70,7 @@ const Main = styled.div`
    align-items: center;
    background-color: white;
 `
-const InputButton = styled.div`
+const Input = styled.div`
    display: flex;
    margin-bottom: 5px;
 `
@@ -105,7 +111,7 @@ const Enter = styled.button`
       line-height: 100%;
    border: none;
 `
-const TextLink = styled.span`
+const TextLink = styled(Link)`
    font-family: "Lexend Deca", sans-serif;
    font-weight: 400;
    font-size: 14px;

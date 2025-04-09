@@ -10,14 +10,14 @@ import Hoje from './pages/Hoje'
 
 
 function App() {
-
+const [token, setToken] = useState()
   return (
     <BrowserRouter>
       <GlobalStyles />
           <Routes>
-            <Route path='/' element={<Login />}/>
+            <Route path='/' element={<Login setToken={setToken}/>}/>
             <Route path='/cadastro' element ={<Cadastro/>}/>
-            <Route path ='/habitos' element = {<Habitos/>}/>
+            <Route path ='/habitos' element = {<Habitos token={token}/>}/>
             <Route path='/hoje' element = {< Hoje />}/>
           </Routes>
      </BrowserRouter>

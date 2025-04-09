@@ -1,17 +1,25 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import Logo from '../image/Logo.png'
+import Logo from '../assets/image/Logo.png'
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 
-function Login(){
+function Login({setToken}){
    const [email, setEmail] = useState ('');
+   const [password, setPassword] = useState('');
+   const navigate = useNavigate();
 
    function handleSubmit(e){
       e.preventDefault()
-      console.log({
-         email: email,
-      })
+      const body = { email, password }
+
+      axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login`, body)
+            .then( res => {
+               setToken(res.data.token)
+               navigate('/habitos')})
+            .catch(err => alert(err.response.data.message))
    }
 
    return (
@@ -25,14 +33,14 @@ function Login(){
          </InputButton>
          <InputButton>
             <Information 
-               name="senha" type="password"  placeholder="senha"  required
+               name="senha" type="password"  placeholder="senha" onChange={e => setPassword(e.target.value)} value={password} required
             />
          </InputButton>
          <InputButton>
             <Enter type="submit" />
          </InputButton>  
       </Inputs>
-      <TextLink>Não tem uma conta? Cadastre-se !</TextLink>
+      <TextLink to="/cadastro">Não tem uma conta? Cadastre-se !</TextLink>
     </Main>
       
    ) 
@@ -94,7 +102,7 @@ const Enter = styled.input`
       line-height: 100%;
    border: none;
 `
-const TextLink = styled.span`
+const TextLink = styled(Link)`
    font-family: "Lexend Deca", sans-serif;
    font-weight: 400;
    font-size: 14px;
