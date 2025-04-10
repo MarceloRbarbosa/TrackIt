@@ -5,22 +5,27 @@ import Login from './pages/Login'
 import Cadastro from './pages/Cadastro'
 import Habitos from './pages/Habitos'
 import Hoje from './pages/Hoje'
+import UserContext from './Contexts/UserContext'
 
 
 
 
 function App() {
-const [token, setToken] = useState()
+const [token, setToken] = useState(localStorage.getItem("token"))
+const [user , setUser] = useState(localStorage.getItem('user'))
+
   return (
+  <UserContext.Provider value={{user, setUser, token, setToken}}>
     <BrowserRouter>
       <GlobalStyles />
-          <Routes>
-            <Route path='/' element={<Login setToken={setToken}/>}/>
-            <Route path='/cadastro' element ={<Cadastro/>}/>
-            <Route path ='/habitos' element = {<Habitos token={token}/>}/>
+        <Routes>
+            <Route path='/' element={<Login />}/>
+            <Route path='/cadastro' element ={<Cadastro />}/>
+            <Route path ='/habitos' element = {<Habitos />}/>
             <Route path='/hoje' element = {< Hoje />}/>
-          </Routes>
-     </BrowserRouter>
+        </Routes>
+    </BrowserRouter>
+  </UserContext.Provider>
   )
 }
 

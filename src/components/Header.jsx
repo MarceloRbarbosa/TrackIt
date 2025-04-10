@@ -1,22 +1,22 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import styled from "styled-components"
-import perfilLogo from "../assets/image/logo.png"
+import UserContext from "../Contexts/UserContext"
 
 function Header(){
-    const [image , setImage]= useState(perfilLogo)
+    const {user}= useContext(UserContext);
 
     return(
-     <Top>
+     <TopBar>
         <p>TrackIt </p>
-        <img src={image}/>
-     </Top>
+        <img src={user.image}/>
+     </TopBar>
     )
 }
 
 export default Header
 
 
-const Top = styled.div`
+const TopBar = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;

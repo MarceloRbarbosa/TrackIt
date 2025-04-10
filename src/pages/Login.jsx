@@ -1,15 +1,19 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import styled from "styled-components"
 import Logo from '../assets/image/Logo.png'
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import UserContext from "../Contexts/UserContext";
 
 
 
-function Login({setToken}){
+function Login(){
    const [email, setEmail] = useState ('');
    const [password, setPassword] = useState('');
    const navigate = useNavigate();
+   const {setUser , setToken} = useContext(UserContext);
+
+
 
    function handleSubmit(e){
       e.preventDefault()
@@ -17,7 +21,10 @@ function Login({setToken}){
 
       axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login`, body)
             .then( res => {
+               setUser(res.data)
                setToken(res.data.token)
+               localStorage.setItem("user", res.data)
+               localStorage.setItem("token", res.data.token)
                navigate('/habitos')})
             .catch(err => alert(err.response.data.message))
    }
