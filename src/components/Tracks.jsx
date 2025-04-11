@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Group from "../assets/image/Group.png";
 
 function Tracks(){
+
+    
    return (
         <Box>
             <Registry>
