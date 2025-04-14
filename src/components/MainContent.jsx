@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import NewHabits from "./NewHabits";
 
-function MainContent({ showNewHabit, setShowNewHabit, habits, setHabits}) {
+function MainContent({ showNewHabit, setShowNewHabit, habits, setHabits }) {
   return (
     <BoxContainer>
-      {showNewHabit && <NewHabits setShowNewHabit={setShowNewHabit} setHabits={setHabits}/>}
+      {showNewHabit && (
+        <NewHabits setShowNewHabit={setShowNewHabit} setHabits={setHabits} />
+      )}
       {habits.length === 0 ? (
         <Mensage>
           <span>

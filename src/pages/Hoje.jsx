@@ -7,7 +7,6 @@ import UserContext from "../Contexts/UserContext";
 import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
 
-
 function Hoje() {
   const { token } = useContext(UserContext);
   const [habits, setHabits] = useState(null);
@@ -26,18 +25,16 @@ function Hoje() {
       .catch((err) => console.log(err.response?.data || err.message));
   }, [token]);
 
-
   if (habits === null) {
     return (
-        <ThreeDots
-          height="50"
-          width="50"
-          radius="9"
-          color="#52b6ff"
-          ariaLabel="three-dots-loading"
-          visible={true}
-        />
-      
+      <ThreeDots
+        height="50"
+        width="50"
+        radius="9"
+        color="#52b6ff"
+        ariaLabel="three-dots-loading"
+        visible={true}
+      />
     );
   }
   return (
@@ -52,6 +49,7 @@ function Hoje() {
           done={habit.done}
           recordSequence={habit.highestSequence}
           setHabits={setHabits}
+          id={habit.id}
         />
       ))}
       <Footer />

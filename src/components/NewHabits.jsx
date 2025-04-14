@@ -6,7 +6,8 @@ import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
 
 function NewHabits({ setShowNewHabit, setHabits }) {
-  const { newHabit, setNewHabit, selected, setSelected } = useContext(NewHabitsContext);
+  const { newHabit, setNewHabit, selected, setSelected } =
+    useContext(NewHabitsContext);
   const { token } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const days = [

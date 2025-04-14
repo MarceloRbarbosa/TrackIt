@@ -8,7 +8,6 @@ import { Navigate, useNavigate } from "react-router-dom";
 import UserContext from "../Contexts/UserContext";
 import { ThreeDots } from "react-loader-spinner";
 
-
 function Habitos() {
   const [products, setProducts] = useState(null);
   const [showNewHabit, setShowNewHabit] = useState(false);

@@ -18,7 +18,9 @@ function App() {
   });
 
   return (
-    <NewHabitsContext.Provider value={{ newHabit, setNewHabit, selected, setSelected}}>
+    <NewHabitsContext.Provider
+      value={{ newHabit, setNewHabit, selected, setSelected }}
+    >
       <UserContext.Provider value={{ user, setUser, token, setToken }}>
         <BrowserRouter>
           <GlobalStyles />
@@ -35,4 +37,3 @@ function App() {
 }
 
 export default App;
-
