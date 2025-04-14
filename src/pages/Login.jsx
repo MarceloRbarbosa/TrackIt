@@ -66,18 +66,18 @@ function Login() {
         </InputButton>
         <InputButton>
           <Enter type="submit" disabled={loading}>
-          {loading ? (
-            <ThreeDots
-              height="13"
-              width="51"
-              radius="9"
-              color="#ffffff"
-              ariaLabel="three-dots-loading"
-              visible={true}
-            />
-          ) : (
-            "Enviar"
-          )}
+            {loading ? (
+              <ThreeDots
+                height="13"
+                width="51"
+                radius="9"
+                color="#ffffff"
+                ariaLabel="three-dots-loading"
+                visible={true}
+              />
+            ) : (
+              "Enviar"
+            )}
           </Enter>
         </InputButton>
       </Inputs>
@@ -146,7 +146,6 @@ const Enter = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-
 `;
 const TextLink = styled(Link)`
   font-family: "Lexend Deca", sans-serif;

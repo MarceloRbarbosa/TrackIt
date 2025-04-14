@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import UserContext from "../Contexts/UserContext";
+import NewHabitsContext from "../Contexts/NewHabitsContext";
 import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
 
-function NewHabits({ setShowNewHabit }) {
-  const [selected, setSelected] = useState([]);
-  const [newHabit, setNewHabit] = useState("");
+function NewHabits({ setShowNewHabit, setHabits }) {
+  const { newHabit, setNewHabit, selected, setSelected } = useContext(NewHabitsContext);
   const { token } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const days = [
@@ -21,8 +21,6 @@ function NewHabits({ setShowNewHabit }) {
 
   function handleCancel() {
     setShowNewHabit(false);
-    setNewHabit("");
-    setSelected([]);
   }
 
   function handleSave() {
@@ -35,7 +33,6 @@ function NewHabits({ setShowNewHabit }) {
       name: newHabit,
       days: selected.map((day) => days.findIndex((d) => d.name === day)),
     };
-    
 
     const config = {
       headers: {
@@ -50,7 +47,8 @@ function NewHabits({ setShowNewHabit }) {
         body,
         config
       )
-      .then(() => {
+      .then((res) => {
+        setHabits((prev) => [...prev, res.data]);
         setShowNewHabit(false);
         setNewHabit("");
         setSelected([]);
@@ -131,6 +129,7 @@ const AddHabits = styled.div`
   height: 180px;
   background-color: white;
   position: relative;
+  border-radius: 5px;
 `;
 
 const NameInput = styled.input`

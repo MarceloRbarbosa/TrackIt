@@ -8,6 +8,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import UserContext from "../Contexts/UserContext";
 import { ThreeDots } from "react-loader-spinner";
 
+
 function Habitos() {
   const [products, setProducts] = useState(null);
   const [showNewHabit, setShowNewHabit] = useState(false);
@@ -56,7 +57,12 @@ function Habitos() {
           if (!showNewHabit) setShowNewHabit(true);
         }}
       />
-      <MainContent showNewHabit={showNewHabit} setShowNewHabit={setShowNewHabit}/>
+      <MainContent
+        showNewHabit={showNewHabit}
+        setShowNewHabit={setShowNewHabit}
+        habits={products}
+        setHabits={setProducts}
+      />
       <Footer />
     </>
   );
