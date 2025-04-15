@@ -1,23 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import dayjs from "dayjs";
+import "dayjs/locale/pt-br";
+
+dayjs.locale("pt-br");
+
 
 function DayTitle() {
-  const today = new Date();
-  const weekdays = [
-    "Domingo",
-    "Segunda",
-    "Terça",
-    "Quarta",
-    "Quinta",
-    "Sexta",
-    "Sábado",
-  ];
+  const today = dayjs();
+  const dateFormat = today.format("dddd, DD/MM")
+  const shortDay = dateFormat.replace(/-feira/, "");
+  
+  const capitalizedDate = dateFormat.charAt(0).toUpperCase() + shortDay.slice(1);
 
-  const dayName = weekdays[today.getDay()];
-  const day = String(today.getDate()).padStart(2, "0");
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-
-  return <Title>{`${dayName}, ${day}/${month}`}</Title>;
+  return <Title>{capitalizedDate}</Title>;
 }
 
 export default DayTitle;
