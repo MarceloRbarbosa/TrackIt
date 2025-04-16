@@ -5,7 +5,7 @@ import DayTitle from "../components/DayTitle";
 import Tracks from "../components/Tracks";
 import UserContext from "../Contexts/UserContext";
 import axios from "axios";
-import { ThreeDots } from "react-loader-spinner";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function Hoje() {
   const { token } = useContext(UserContext);
@@ -27,14 +27,12 @@ function Hoje() {
 
   if (habits === null) {
     return (
-      <ThreeDots
-        height="50"
-        width="50"
-        radius="9"
-        color="#52b6ff"
-        ariaLabel="three-dots-loading"
-        visible={true}
-      />
+      <ClipLoader
+      color="#52b6ff"
+      size={50}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+    />
     );
   }
   return (

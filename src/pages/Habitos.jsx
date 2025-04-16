@@ -6,7 +6,7 @@ import MainContent from "../components/MainContent";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import UserContext from "../Contexts/UserContext";
-import { ThreeDots } from "react-loader-spinner";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function Habitos() {
   const [products, setProducts] = useState(null);
@@ -37,14 +37,12 @@ function Habitos() {
 
   if (products === null) {
     return (
-      <ThreeDots
-        height="13"
-        width="51"
-        radius="9"
-        color="#52b6ff"
-        ariaLabel="three-dots-loading"
-        visible={true}
-      />
+      <ClipLoader
+              color="#52b6ff"           
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
     );
   }
 

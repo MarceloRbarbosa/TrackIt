@@ -4,7 +4,7 @@ import Logo from "../assets/image/Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import UserContext from "../Contexts/UserContext";
-import { ThreeDots } from "react-loader-spinner";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -67,14 +67,13 @@ function Login() {
         <InputButton>
           <Enter type="submit" disabled={loading}>
             {loading ? (
-              <ThreeDots
-                height="13"
-                width="51"
-                radius="9"
-                color="#ffffff"
-                ariaLabel="three-dots-loading"
-                visible={true}
-              />
+              <ClipLoader
+              color="#52b6ff"
+              loading={loading}
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
             ) : (
               "Enviar"
             )}

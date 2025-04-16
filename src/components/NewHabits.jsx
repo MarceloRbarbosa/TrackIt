@@ -3,7 +3,7 @@ import styled from "styled-components";
 import UserContext from "../Contexts/UserContext";
 import NewHabitsContext from "../Contexts/NewHabitsContext";
 import axios from "axios";
-import { ThreeDots } from "react-loader-spinner";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function NewHabits({ setShowNewHabit, setHabits }) {
   const { newHabit, setNewHabit, selected, setSelected } =
@@ -104,13 +104,12 @@ function NewHabits({ setShowNewHabit, setHabits }) {
         </Cancel>
         <Save onClick={handleSave} disabled={loading}>
           {loading ? (
-            <ThreeDots
-              height="13"
-              width="51"
-              radius="9"
-              color="#ffffff"
-              ariaLabel="three-dots-loading"
-              visible={true}
+            <ClipLoader
+              color="#52b6ff"
+              loading={loading}
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
             />
           ) : (
             "Salvar"

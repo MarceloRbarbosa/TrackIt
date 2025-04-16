@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../assets/image/Logo.png";
 import axios from "axios";
-import { ThreeDots } from "react-loader-spinner";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function Cadastro() {
   const [email, setEmail] = useState("");
@@ -79,14 +79,13 @@ function Cadastro() {
         <Input>
           <Enter type="submit" disabled={loading}>
             {loading ? (
-              <ThreeDots
-                height="13"
-                width="51"
-                radius="9"
-                color="#ffffff"
-                ariaLabel="three-dots-loading"
-                visible={true}
-              />
+              <ClipLoader
+              color="#52b6ff"
+              loading={loading}
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
             ) : (
               "Cadastrar"
             )}
