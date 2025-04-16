@@ -2,7 +2,7 @@
 
 **TrackIt** é um app mobile para acompanhamento de hábitos diários. Desenvolvi esse projeto como parte de um curso focado em React, e ele me ajudou a consolidar várias habilidades: consumo de API, estado global com Context, roteamento e estilização com styled-components.
 
-📱 Acesse aqui: [https://track-it-ruddy.vercel.app/]("https://track-it-ruddy.vercel.app/")
+📱 Acesse aqui: [ https://track-it-ruddy.vercel.app/ ](https://track-it-ruddy.vercel.app/)
 
 ---
 
